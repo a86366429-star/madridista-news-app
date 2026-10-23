@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b1d3a">
+  <meta name="description" content="أخبار ريال مدريد، الانتقالات، المباريات وآخر المستجدات في مكان واحد.">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <title>مدريدي | أخبار ريال مدريد</title>
+  <style>
+    :root{--navy:#0b1d3a;--blue:#153d73;--gold:#f4c542;--bg:#f3f5f8;--card:#fff;--text:#182235;--muted:#687386;--line:#e3e7ee}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif;line-height:1.65}
+    header{background:linear-gradient(135deg,var(--navy),var(--blue));color:white;padding:22px 16px 18px}
+    .wrap{max-width:1050px;margin:auto;padding:0 14px}
+    .brand{display:flex;align-items:center;gap:12px}.crest{width:48px;height:48px;border:2px solid var(--gold);border-radius:50%;display:grid;place-items:center;font-weight:bold;color:var(--gold);font-size:15px}
+    h1{font-size:25px;margin:0}.sub{color:#dce5f4;margin:2px 0 0;font-size:13px}
+    .hero{padding:20px 0 8px}.hero h2{margin:0;font-size:23px}.hero p{margin:4px 0;color:#dce5f4;font-size:14px}
+    .searchbar{display:flex;gap:8px;margin-top:16px}.searchbar input{flex:1;min-width:0;padding:12px;border-radius:12px;border:1px solid #ffffff50;font-size:15px}
+    button{font:inherit;cursor:pointer;border:0}.searchbar button{padding:10px 16px;border-radius:12px;background:var(--gold);color:#192238;font-weight:bold}
+    nav{display:flex;gap:8px;overflow-x:auto;padding:14px 0 4px;scrollbar-width:thin}
+    .tab{white-space:nowrap;background:#ffffff18;border:1px solid #ffffff30;color:white;border-radius:999px;padding:8px 14px}
+    .tab.active{background:var(--gold);color:#192238;border-color:var(--gold);font-weight:bold}
+    main{padding:18px 0 35px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:2px 0 14px}
+    .section-head h2{font-size:20px;margin:0}.status{font-size:12px;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .news{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px;display:flex;flex-direction:column;min-height:185px;box-shadow:0 3px 12px #10204008}
+    .meta{font-size:12px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+    .source{color:var(--blue);font-weight:bold}.news h3{font-size:16px;line-height:1.55;margin:0 0 12px}
+    .news a{margin-top:auto;color:var(--blue);font-weight:bold;text-decoration:none}.news a:hover{text-decoration:underline}
+    .label{font-size:11px;background:#edf2fa;color:#244b80;border-radius:6px;padding:3px 7px}
+    .notice,.empty{background:white;border:1px solid var(--line);border-radius:14px;padding:18px;color:var(--muted)}
+    .notice{margin-bottom:14px;font-size:13px}.notice strong{color:var(--text)}
+    .footer{border-top:1px solid var(--line);padding:18px 0 28px;color:var(--muted);font-size:12px}
+    .loading{display:flex;align-items:center;gap:10px;padding:24px;color:var(--muted)}.spinner{width:18px;height:18px;border:2px solid #d6dce7;border-top-color:var(--blue);border-radius:50%;animation:spin .8s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+    .error{color:#8d2b2b;background:#fff1f1;border:1px solid #ffd6d6;padding:14px;border-radius:12px}
+    .quicklinks{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.quicklinks a{background:#ffffff16;color:white;border:1px solid #ffffff35;padding:7px 10px;border-radius:9px;text-decoration:none;font-size:13px}
+    @media(max-width:650px){.grid{grid-template-columns:1fr}.news{min-height:0}.hero h2{font-size:20px}h1{font-size:22px}.searchbar button{padding:10px 12px}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand"><div class="crest">RM</div><div><h1>مدريدي</h1><p class="sub">كل أخبار ريال مدريد بمكان واحد</p></div></div>
+    <div class="hero">
+      <h2>نبض الملكي يبدأ من هنا 🤍</h2>
+      <p>أخبار، انتقالات، إصابات، وتحضيرات المباريات — مع روابط المصادر الأصلية.</p>
+      <form class="searchbar" id="searchForm">
+        <input id="searchInput" type="search" placeholder="ابحث عن لاعب أو خبر..." aria-label="ابحث عن خبر">
+        <button type="submit">بحث</button>
+      </form>
+    </div>
+    <nav id="tabs" aria-label="أقسام الأخبار">
+      <button class="tab active" data-category="latest">آخر الأخبار</button>
+      <button class="tab" data-category="transfers">الانتقالات</button>
+      <button class="tab" data-category="matches">المباريات</button>
+      <button class="tab" data-category="injuries">الإصابات</button>
+      <button class="tab" data-category="spanish">صحافة إسبانيا</button>
+    </nav>
+    <div class="quicklinks">
+      <a href="https://www.realmadrid.com/en-US" target="_blank" rel="noopener">الموقع الرسمي</a>
+      <a href="https://www.laliga.com/en-GB" target="_blank" rel="noopener">LaLiga</a>
+      <a href="https://www.uefa.com/uefachampionsleague/" target="_blank" rel="noopener">دوري الأبطال</a>
+    </div>
+  </div>
+</header>
+<main class="wrap">
+  <div class="notice"><strong>ملاحظة:</strong> الأخبار تُجمع من موجز Google News وتُعرض عناوينها مع رابط المصدر الأصلي. التطبيق لا ينشر المقالات كاملة ولا يمثل نادي ريال مدريد رسمياً.</div>
+  <div class="section-head"><h2 id="sectionTitle">آخر أخبار ريال مدريد</h2><span id="updated" class="status">بانتظار تحميل الأخبار</span></div>
+  <section id="results" class="grid" aria-live="polite"><div class="loading"><span class="spinner"></span> جاري تحميل الأخبار...</div></section>
+</main>
+<footer class="footer"><div class="wrap">مدريدي — مشروع تجريبي مستقل للمشجعين. جميع الأخبار والحقوق تعود إلى مصادرها الأصلية. تأكد من شروط المصادر قبل الاستخدام التجاري.</div></footer>
+<script>
+const titles={latest:"آخر أخبار ريال مدريد",transfers:"أخبار الانتقالات",matches:"المباريات والنتائج",injuries:"الإصابات والجاهزية",spanish:"صحافة إسبانيا",search:"نتائج البحث"};
+let currentCategory="latest",currentQuery="";
+const results=document.getElementById("results"), updated=document.getElementById("updated");
+function escapeHTML(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function prettyDate(value){if(!value)return "";const d=new Date(value);return isNaN(d)?value:d.toLocaleString("ar-IQ",{dateStyle:"medium",timeStyle:"short"});}
+function showError(message){results.innerHTML='<div class="error">'+escapeHTML(message)+'</div>';}
+function render(items){
+  if(!items||!items.length){results.innerHTML='<div class="empty">ما لقينا أخبار بهالقسم حالياً. جرّب بعد شوي أو غيّر كلمة البحث.</div>';return;}
+  results.innerHTML=items.map(item=>`<article class="news">
+    <div class="meta"><span class="label">${escapeHTML(item.categoryLabel||"خبر")}</span><span class="source">${escapeHTML(item.source||"المصدر الأصلي")}</span><span>${escapeHTML(prettyDate(item.pubDate))}</span></div>
+    <h3>${escapeHTML(item.title)}</h3>
+    <a href="${escapeHTML(item.link)}" target="_blank" rel="noopener noreferrer">اقرأ الخبر بالمصدر الأصلي ←</a>
+  </article>`).join("");
+}
+async function loadNews(category=currentCategory,query=currentQuery){
+  currentCategory=category;currentQuery=query;
+  document.getElementById("sectionTitle").textContent=query?titles.search:titles[category]||titles.latest;
+  document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("active",b.dataset.category===category&&!query));
+  results.innerHTML='<div class="loading"><span class="spinner"></span> جاري تحميل الأخبار...</div>';
+  updated.textContent="يتم التحديث الآن";
+  try{
+    const params=new URLSearchParams({category});
+    if(query)params.set("q",query);
+    const response=await fetch("/api/news?"+params.toString(),{headers:{"Accept":"application/json"}});
+    if(!response.ok)throw new Error("تعذر جلب الأخبار (رمز "+response.status+").");
+    const data=await response.json();
+    if(data.error)throw new Error(data.error);
+    render(data.items||[]);
+    updated.textContent="آخر تحديث: "+new Date().toLocaleTimeString("ar-IQ",{hour:"2-digit",minute:"2-digit"});
+  }catch(e){
+    showError("ما قدرنا نحمّل الأخبار. تأكد من نشر المشروع على Vercel حتى تعمل واجهة الأخبار، أو جرّب اتصال الإنترنت. "+e.message);
+    updated.textContent="تعذر التحديث";
+  }
+}
+document.getElementById("tabs").addEventListener("click",e=>{const b=e.target.closest("button[data-category]");if(b)loadNews(b.dataset.category,"");});
+document.getElementById("searchForm").addEventListener("submit",e=>{e.preventDefault();const q=document.getElementById("searchInput").value.trim();if(q)loadNews("latest",q);});
+if("serviceWorker" in navigator && location.protocol.startsWith("http"))navigator.serviceWorker.register("/sw.js").catch(()=>{});
+loadNews();
+</script>
+</body>
+</html>
